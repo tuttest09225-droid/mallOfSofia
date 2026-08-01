@@ -1,0 +1,232 @@
+{
+  "nav": {
+    "shop": "Shop",
+    "dining": "Dining",
+    "events": "Events",
+    "cinema": "Cinema",
+    "loyalty": "Loyalty",
+    "search": "Search",
+    "map": "Map",
+    "menu": "Menu",
+    "dark": "Dark Mode",
+    "light": "Light Mode"
+  },
+  "footer": {
+    "title": "Discover shopping, dining, entertainment and experiences in the heart of Sofia.",
+    "dining": "Dining",
+    "visit": "Visit",
+    "explore": "Explore",
+    "events": "Events",
+    "cinema": "Cinema",
+    "loyalty": "Loyalty",
+    "stores": "Stores",
+    "hours": "Opening Hours",
+    "parking": "Parking",
+    "directions": "Directions",
+    "map": "Map",
+    "contacts": {
+      "title": "Contacts",
+      "address": "101 Al. Stamboliyski Blvd",
+      "phone": "Phone: +359 2 222 2222",
+      "email": "info@mallofsofia.bg"
+    },
+    "bottom": {
+      "copyright": "© 2026 Mall of Sofia. All rights reserved.",
+      "terms": "Terms & Conditions",
+      "privacy": "Privacy Policy",
+      "cookies": "Cookies Policy"
+    }
+  },
+  "language": {
+    "english": "English",
+    "bulgarian": "Bulgarian"
+  },
+  "hero": {
+    "title": "Mall of Sofia",
+    "subtitle": "Discover. Shop. Experience.",
+    "CTAdiscover": "Discover Shops",
+    "CTAevents": "What's Happening?",
+    "scrollDown": "Scroll Down"
+  },
+  "statusPanel": {
+    "today": "Today",
+    "open": "Open Now",
+    "closed": "Closed",
+    "parkingOpen": "Parking Open",
+    "parkingClosed": "Parking Closed",
+    "movies_one": "{{count}} Movie",
+    "movies_other": "{{count}} Movies",
+    "offers_one": "{{count}} Offer",
+    "offers_other": "{{count}} Offers",
+    "events_one": "{{count}} Event",
+    "events_other": "{{count}} Events",
+    "premieres_one": "{{count}} Premiere",
+    "premieres_other": "{{count}} Premieres",
+    "newStores_one": "{{count}} New Store",
+    "newStores_other": "{{count}} New Stores"
+  },
+  "featuredPartners": {
+    "title": "Featured at Mall of Sofia",
+    "badges": {
+      "offers": "Offers",
+      "loyalty": "Loyalty",
+      "events": "Events"
+    },
+    "visit": "Visit {{name}}"
+  },
+  "discovery": {
+    "title": "Discover",
+    "subtitle": "Everything you need in one place",
+    "stores": {
+      "title": "Stores",
+      "value": "130+",
+      "subtitle": "Fashion, beauty, tech & more",
+      "CTA": "Discover stores"
+    },
+    "events": {
+      "title": "Events",
+      "value": "3",
+      "subtitle": "Active this week",
+      "CTA": "See what's happening"
+    },
+    "dining": {
+      "title": "Dining",
+      "value": "10",
+      "subtitle": "Restaurants & cafés",
+      "CTA": "Explore dining"
+    },
+    "loyalty": {
+      "title": "Loyalty",
+      "subtitle": "Exclusive member benefits",
+      "CTA": "Join today"
+    },
+    "close": "Close"
+  },
+  "whatsHappening": {
+    "title": "What's Happening",
+    "latest": {
+      "title": "Latest Events",
+      "CTA": "View all",
+      "href": "/events"
+    },
+    "controls": {
+      "previous": "Previous",
+      "next": "Next",
+      "goTo": "Go to {{title}}"
+    },
+    "happenings": [
+      {
+        "type": "Offer",
+        "timing": "This week",
+        "title": "Summer Sale",
+        "description": "Up to 50% off selected stores",
+        "icon": "HiOutlineTag",
+        "color": "#EB2129",
+        "cta": "View offers",
+        "href": "/events"
+      },
+      {
+        "type": "Event",
+        "timing": "Saturday",
+        "title": "Kids Weekend",
+        "description": "Activities for families",
+        "icon": "HiOutlineTicket",
+        "color": "#14A753",
+        "cta": "See event",
+        "href": "/events"
+      },
+      {
+        "type": "New",
+        "timing": "Now open",
+        "title": "New Store Opening",
+        "description": "Visit the latest arrival",
+        "icon": "HiOutlineSparkles",
+        "color": "#105BA9",
+        "cta": "Explore store",
+        "href": "/shops"
+      },
+      {
+        "type": "Loyalty",
+        "timing": "Members only",
+        "title": "Exclusive Rewards",
+        "description": "Discover your latest member benefits",
+        "icon": "HiOutlineSparkles",
+        "color": "#F8B615",
+        "cta": "Discover loyalty",
+        "href": "/loyalty"
+      }
+    ]
+  },
+  "featuredCampaign": {
+    "eyebrow": "Featured Campaign",
+    "title": "Summer Starts Here",
+    "subtitle": "Right now",
+    "description": "Refresh your wardrobe with the newest collections, exclusive promotions and seasonal arrivals from your favourite brands.",
+    "image": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=2000&q=85",
+    "imageAlt": "Summer fashion campaign",
+    "href": "/events",
+    "cta": "Explore the campaign",
+    "stores": "80+ participating stores",
+    "theme": "#EB2129",
+    "tags": [
+      {
+        "label": "Up to 50% Off",
+        "color": "#EB2129"
+      },
+      {
+        "label": "New Collections",
+        "color": "#14A753"
+      },
+      {
+        "label": "Limited Time",
+        "color": "#105BA9"
+      }
+    ]
+  },
+  "cinema": {
+    "title": "Cinema City",
+    "subtitle": "Tonight's Movies",
+    "description": "Discover the latest releases and book your next cinema experience.",
+    "schedule": "Schedule",
+    "viewSchedule": "View full cinema schedule",
+    "movies": [
+      {
+        "title": "Avatar: Fire and Ash",
+        "genre": "Sci-Fi • Adventure",
+        "duration": "2h 15m",
+        "description": "Return to Pandora for a new chapter filled with breathtaking landscapes, powerful emotions and an epic new threat.",
+        "poster": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=80",
+        "times": [
+          "18:30",
+          "20:45"
+        ],
+        "trailer": "https://www.youtube.com/embed/d9MyW72ELq0"
+      },
+      {
+        "title": "F1: The Movie",
+        "genre": "Action • Drama",
+        "duration": "2h 35m",
+        "description": "A former racing driver returns to the track to mentor a young talent while chasing one last shot at glory.",
+        "poster": "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=80",
+        "times": [
+          "17:30",
+          "21:00"
+        ],
+        "trailer": "https://www.youtube.com/embed/8yh9BPUBbbQ"
+      },
+      {
+        "title": "Minecraft Movie",
+        "genre": "Adventure • Family",
+        "duration": "1h 40m",
+        "description": "Four unlikely adventurers are pulled into a strange blocky world where creativity and teamwork are the key to survival.",
+        "poster": "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+        "times": [
+          "16:00",
+          "19:15"
+        ],
+        "trailer": "https://www.youtube.com/embed/PE2YZhcC4NY"
+      }
+    ],
+    "showtimes": "Showtimes"
+  }
+}

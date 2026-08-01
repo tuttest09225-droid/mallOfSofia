@@ -1,0 +1,232 @@
+{
+  "nav": {
+    "shop": "Магазини",
+    "dining": "Заведения",
+    "events": "Събития",
+    "cinema": "Кино",
+    "loyalty": "Лоялност",
+    "search": "Търсене",
+    "map": "Карта",
+    "menu": "Меню",
+    "dark": "Тъмна тема",
+    "light": "Светла тема"
+  },
+  "footer": {
+    "title": "Открийте пазаруване, заведения, развлечения и преживявания в сърцето на София.",
+    "explore": "Разгледайте",
+    "visit": "Посетете",
+    "dining": "Заведения",
+    "events": "Събития",
+    "cinema": "Кино",
+    "loyalty": "Лоялност",
+    "stores": "Магазини",
+    "hours": "Работно време",
+    "parking": "Паркинг",
+    "directions": "Упътвания",
+    "map": "Карта",
+    "contacts": {
+      "title": "Контакти",
+      "address": "бул. Александър Стамболийски 101",
+      "phone": "Телефон: +359 2 222 2222",
+      "email": "info@mallofsofia.bg"
+    },
+    "bottom": {
+      "copyright": "Mall of Sofia. Всички права запазени.",
+      "terms": "Общи условия",
+      "privacy": "Политика за поверителност",
+      "cookies": "Политика за бисквитките"
+    }
+  },
+  "language": {
+    "english": "Английски",
+    "bulgarian": "Български"
+  },
+  "hero": {
+    "title": "Mall of Sofia",
+    "subtitle": "Открий. Пазарувай. Преживей.",
+    "CTAdiscover": "Разгледайте обектите",
+    "CTAevents": "Какво се случва?",
+    "scrollDown": "Надолу"
+  },
+  "statusPanel": {
+    "today": "Днес",
+    "open": "Отворено",
+    "closed": "Затворено",
+    "parkingOpen": "Паркингът е отворен",
+    "parkingClosed": "Паркингът е затворен",
+    "movies_one": "{{count}} филм",
+    "movies_other": "{{count}} филма",
+    "offers_one": "{{count}} оферта",
+    "offers_other": "{{count}} оферти",
+    "events_one": "{{count}} събитие",
+    "events_other": "{{count}} събития",
+    "premieres_one": "{{count}} премиера",
+    "premieres_other": "{{count}} премиери",
+    "newStores_one": "{{count}} нов магазин",
+    "newStores_other": "{{count}} нови магазина"
+  },
+  "featuredPartners": {
+    "title": "Представени в Mall of Sofia",
+    "badges": {
+      "offers": "Оферти",
+      "loyalty": "Лоялност",
+      "events": "Събития"
+    },
+    "visit": "Посети {{name}}"
+  },
+  "discovery": {
+    "title": "Открийте",
+    "subtitle": "Всичко необходимо на едно място",
+    "stores": {
+      "title": "Магазини",
+      "value": "130+",
+      "subtitle": "Мода, красота, технологии и още",
+      "CTA": "Открийте магазините"
+    },
+    "events": {
+      "title": "Събития",
+      "value": "3",
+      "subtitle": "Активни тази седмица",
+      "CTA": "Вижте какво се случва"
+    },
+    "dining": {
+      "title": "Заведения",
+      "value": "25",
+      "subtitle": "Ресторанти и кафенета",
+      "CTA": "Разгледайте заведенията"
+    },
+    "loyalty": {
+      "title": "Лоялност",
+      "subtitle": "Награди и отстъпки",
+      "CTA": "Получавайте награди"
+    },
+    "close": "Затвори"
+  },
+  "whatsHappening": {
+    "title": "В момента",
+    "latest": {
+      "title": "Последни събития",
+      "CTA": "Виж всички",
+      "href": "/events"
+    },
+    "controls": {
+      "previous": "Предишно",
+      "next": "Следващо",
+      "goTo": "Към {{title}}"
+    },
+    "happenings": [
+      {
+        "type": "Оферта",
+        "timing": "Тази седмица",
+        "title": "Лятна разпродажба",
+        "description": "До 50% отстъпка в избрани магазини",
+        "icon": "HiOutlineTag",
+        "color": "#EB2129",
+        "cta": "Виж офертите",
+        "href": "/events"
+      },
+      {
+        "type": "Събитие",
+        "timing": "Събота",
+        "title": "Уикенд за деца",
+        "description": "Забавления за цялото семейство",
+        "icon": "HiOutlineTicket",
+        "color": "#14A753",
+        "cta": "Виж събитието",
+        "href": "/events"
+      },
+      {
+        "type": "Ново",
+        "timing": "Отворен",
+        "title": "Нов магазин",
+        "description": "Посетете най-новото попълнение",
+        "icon": "HiOutlineSparkles",
+        "color": "#105BA9",
+        "cta": "Разгледай магазина",
+        "href": "/shops"
+      },
+      {
+        "type": "Лоялност",
+        "timing": "Само за членове",
+        "title": "Ексклузивни награди",
+        "description": "Открийте най-новите си предимства за членове",
+        "icon": "HiOutlineSparkles",
+        "color": "#F8B615",
+        "cta": "Открийте лоялността",
+        "href": "/loyalty"
+      }
+    ]
+  },
+  "featuredCampaign": {
+    "eyebrow": "Избрана кампания",
+    "title": "Лятото започва тук",
+    "subtitle": "Точно сега",
+    "description": "Освежете гардероба си с най-новите колекции, ексклузивни промоции и сезонни предложения от любимите ви марки.",
+    "image": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=2000&q=85",
+    "imageAlt": "Лятна модна кампания",
+    "href": "/events",
+    "cta": "Разгледайте кампанията",
+    "stores": "80+ участващи магазина",
+    "theme": "#EB2129",
+    "tags": [
+      {
+        "label": "До 50% отстъпка",
+        "color": "#EB2129"
+      },
+      {
+        "label": "Нови колекции",
+        "color": "#14A753"
+      },
+      {
+        "label": "За ограничено време",
+        "color": "#105BA9"
+      }
+    ]
+  },
+  "cinema": {
+    "title": "Cinema City",
+    "subtitle": "Филми тази вечер",
+    "description": "Открийте най-новите заглавия и резервирайте следващото си кино преживяване.",
+    "schedule": "Програма",
+    "viewSchedule": "Вижте пълната кино програма",
+    "movies": [
+      {
+        "title": "Аватар: Огън и пепел",
+        "genre": "Научна фантастика • Приключенски",
+        "duration": "2 ч. 15 мин.",
+        "description": "Завърнете се на Пандора за нова глава, изпълнена със спиращи дъха пейзажи, силни емоции и епична нова заплаха.",
+        "poster": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=900&q=80",
+        "times": [
+          "18:30",
+          "20:45"
+        ],
+        "trailer": "https://www.youtube.com/embed/d9MyW72ELq0"
+      },
+      {
+        "title": "F1: Филмът",
+        "genre": "Екшън • Драма",
+        "duration": "2 ч. 35 мин.",
+        "description": "Бивш състезател се завръща на пистата, за да наставлява млад талант и да преследва последния си шанс за слава.",
+        "poster": "https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=80",
+        "times": [
+          "17:30",
+          "21:00"
+        ],
+        "trailer": "https://www.youtube.com/embed/8yh9BPUBbbQ"
+      },
+      {
+        "title": "Minecraft: Филмът",
+        "genre": "Приключенски • Семеен",
+        "duration": "1 ч. 40 мин.",
+        "description": "Четирима необичайни приключенци попадат в странен свят от блокове, където креативността и екипната работа са ключът към оцеляването.",
+        "poster": "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=80",
+        "times": [
+          "16:00",
+          "19:15"
+        ],
+        "trailer": "https://www.youtube.com/embed/PE2YZhcC4NY"
+      }
+    ],
+    "showtimes": "Прожекции"
+  }
+}

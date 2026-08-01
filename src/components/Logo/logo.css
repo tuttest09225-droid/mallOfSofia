@@ -1,0 +1,55 @@
+.heartbeat{
+
+    width:320px;
+    height:auto;
+
+    color:#111;
+
+}
+
+.logo{
+    display:inline-flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:.5rem;
+}
+
+.wordmark{
+    display:flex;
+    align-items:flex-end;
+    gap:1rem;
+}
+
+.logo-icon{
+    width:48px;
+    height:48px;
+    object-fit:contain;
+}
+
+.logo-text{
+    display:flex;
+    align-items:flex-end;
+    gap:.35rem;
+}
+
+.mall{
+
+    font-size:3rem;
+    font-weight:300;
+    line-height:1;
+}
+
+.of{
+
+    font-size:.9rem;
+    letter-spacing:.35em;
+    margin-bottom:1rem;
+    line-height:1;
+}
+
+.sofia{
+
+    font-size:3.5rem;
+    font-weight:600;
+    line-height:1;
+}
