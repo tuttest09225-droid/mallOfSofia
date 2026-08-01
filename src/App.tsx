@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
-import MobileStatusBar from "./components/MobileStatusBar";
 import MobileFloatingActions from "./components/MobileFloatingActions";
 import Footer from "./components/Footer";
 
