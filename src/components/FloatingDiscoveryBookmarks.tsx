@@ -326,7 +326,7 @@ export default function FloatingDiscoveryBookmarks({
                                 }
                                 className="group block"
                               >
-                                <div className="grid grid-cols-3 items-center gap-2 px-2 py-1 pl-7">
+                                <div className="grid grid-cols-3 items-center gap-1 px-2 py-1 pl-7">
                                   {/* 1/3 — ICON + TITLE */}
 
                                   <div className="flex min-w-0 items-center gap-2">
