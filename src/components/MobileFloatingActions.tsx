@@ -1,6 +1,9 @@
 import { Search, MapPin, ArrowUp } from "lucide-react";
 
+import { useScrollDirection } from "../hooks/useScrollDirection";
+
 export default function MobileFloatingActions() {
+  const { scrollY } = useScrollDirection();
 
   const showBackToTop = scrollY > 500;
 
@@ -25,7 +28,8 @@ export default function MobileFloatingActions() {
             <ArrowUp size={21} />
           </button>
 
-            <div className="mx-2 border-t border-primary" />
+          {/* Always visible divider */}
+          <div className="mx-2 border-t border-primary" />
         </>
       )}
 
@@ -33,22 +37,25 @@ export default function MobileFloatingActions() {
       <button
         type="button"
         aria-label="Map"
-        className={`
-          flex h-12 w-12 items-center justify-center text-primary transition-colors hover:bg-primary/10 lg:hidden
-        `}
+        className="
+          flex h-12 w-12 items-center justify-center text-primary
+          transition-colors hover:bg-primary/10 lg:hidden
+        "
       >
         <MapPin size={21} />
       </button>
 
-        <div className="mx-2 border-t border-primary lg:hidden" />
+      {/* Always visible divider */}
+      <div className="mx-2 border-t border-primary lg:hidden" />
 
       {/* Mobile Search */}
       <button
         type="button"
         aria-label="Search"
-        className={`
-          flex h-12 w-12 items-center justify-center text-primary transition-colors hover:bg-primary/10 lg:hidden
-        `}
+        className="
+          flex h-12 w-12 items-center justify-center text-primary
+          transition-colors hover:bg-primary/10 lg:hidden
+        "
       >
         <Search size={21} />
       </button>
