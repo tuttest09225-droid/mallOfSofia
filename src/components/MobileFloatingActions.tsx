@@ -5,7 +5,6 @@ export default function MobileFloatingActions() {
   const { scrollDirection, scrollY } = useScrollDirection();
 
   const navbarHidden = scrollDirection === "down" && scrollY > 100;
-  const showFloatingActions = navbarHidden && scrollY > 100;
   const showBackToTop = scrollY > 500;
 
   const scrollToTop = () => {
