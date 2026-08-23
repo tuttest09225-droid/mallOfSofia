@@ -82,7 +82,7 @@ export default function DiscoverSection() {
               <Link
                 key={card.key}
                 to={card.href}
-                className="group block overflow-hidden rounded-xl border bg-base-100 p-4 shadow-sm transition-all duration-300 active:scale-[0.99]"
+                className="group block overflow-hidden rounded-xl border bg-base-100 py-1 px-2 shadow-sm transition-all duration-300 active:scale-[0.99]"
                 style={{
                   borderColor: card.color,
                   borderWidth: "2px",
@@ -95,7 +95,7 @@ export default function DiscoverSection() {
 
                   <div className="flex min-w-0 items-center gap-2">
                     <div
-                      className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl"
+                      className="flex h-12 w-121 shrink-0 items-center justify-center rounded-xl"
                       style={{
                         backgroundColor: `${card.color}12`,
                         color: card.color,
