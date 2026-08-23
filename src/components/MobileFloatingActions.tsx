@@ -1,10 +1,7 @@
 import { Search, MapPin, ArrowUp } from "lucide-react";
-import { useScrollDirection } from "../hooks/useScrollDirection";
 
 export default function MobileFloatingActions() {
-  const { scrollDirection, scrollY } = useScrollDirection();
 
-  const navbarHidden = scrollDirection === "down" && scrollY > 100;
   const showBackToTop = scrollY > 500;
 
   const scrollToTop = () => {
