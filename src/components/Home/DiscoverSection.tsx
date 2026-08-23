@@ -93,9 +93,9 @@ export default function DiscoverSection() {
                       1/3 — ICON + TITLE + AMOUNT
                   ================================================== */}
 
-                  <div className="flex min-w-0 items-center gap-2">
+                  <div className="flex min-w-0 items-center gap-1">
                     <div
-                      className="flex h-12 w-121 shrink-0 items-center justify-center rounded-xl"
+                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
                       style={{
                         backgroundColor: `${card.color}12`,
                         color: card.color,
