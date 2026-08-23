@@ -55,20 +55,20 @@ export default function WhatsHappening() {
         {/* Header */}
         <div className="mb-10 flex flex-col">
           <div className="flex justify-between gap-4">
-            <p className="content-center text-sm uppercase tracking-[0.35em] text-base-content/50">
+            <p className="content-center text-base uppercase tracking-[0.35em] text-base-100/70">
               {t("whatsHappening.latest.title")}
             </p>
 
             <Link
               to={t("whatsHappening.latest.href")}
-              className="flex items-center gap-2 rounded-lg border border-primary px-5 py-2 text-sm font-medium text-base-content transition-all hover:bg-primary hover:text-white"
+              className="flex items-center gap-2 rounded-lg border border-primary px-5 py-2 text-sm font-medium text-base-100 bg-primary/30 transition-all hover:bg-primary hover:text-white"
             >
               {t("whatsHappening.latest.CTA")}
               <HiOutlineArrowRight size={18} />
             </Link>
           </div>
 
-          <h2 className="mt-3 text-4xl font-semibold tracking-tight text-base-content lg:text-5xl">
+          <h2 className="mt-3 text-4xl font-semibold tracking-tight text-base-100 lg:text-5xl">
             {t("whatsHappening.title")}
           </h2>
         </div>
@@ -91,11 +91,14 @@ export default function WhatsHappening() {
                     to={item.href}
                     className="w-full shrink-0 pr-1"
                   >
-                    <article className="group min-h-[280px] rounded-xl border border-base-300 bg-base-100 p-7 transition-all duration-300 hover:border-primary/70">
+                    <article
+                      className="group min-h-[280px] rounded-lg border bg-base-100/90 backdrop-blur-sm p-7 transition-all duration-300 hover:border-primary/70"
+                      style={{ borderColor: item.color }}
+                    >
                       {/* Badge */}
                       <div className="flex items-center justify-between">
                         <span
-                          className="flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wide"
+                          className="flex items-center gap-2 rounded-lg px-4 py-2 text-xs font-semibold uppercase tracking-wide"
                           style={{
                             backgroundColor: `${item.color}15`,
                             color: item.color,
@@ -105,7 +108,7 @@ export default function WhatsHappening() {
                           {item.type}
                         </span>
 
-                        <span className="text-sm text-base-content/40">
+                        <span className="text-sm" style={{ color: item.color }}>
                           {item.timing}
                         </span>
                       </div>
@@ -188,12 +191,13 @@ export default function WhatsHappening() {
               <Link
                 key={item.title}
                 to={item.href}
-                className="group rounded-3xl border border-base-300 bg-base-100 p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                className="group rounded-xl border-2 bg-base-100/70 backdrop-blur-sm p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+                style={{ borderColor: item.color }}
               >
                 {/* Badge */}
                 <div className="flex items-center justify-between">
                   <span
-                    className="flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wide"
+                    className="flex items-center gap-2 rounded-lg px-4 py-2 text-xs  font-semibold uppercase tracking-wide"
                     style={{
                       backgroundColor: `${item.color}15`,
                       color: item.color,
@@ -203,7 +207,9 @@ export default function WhatsHappening() {
                     {item.type}
                   </span>
 
-                  <span className="text-sm text-base-content/40">
+                  <span className="text-sm"
+                    style={{ color: item.color }}
+                  >
                     {item.timing}
                   </span>
                 </div>
@@ -213,17 +219,15 @@ export default function WhatsHappening() {
                   {item.title}
                 </h3>
 
-                <p className="mt-3 text-base-content/60">
-                  {item.description}
-                </p>
+                <p className="mt-3 text-base-content/60">{item.description}</p>
 
                 {/* CTA */}
                 <div
-                  className="mt-8 flex items-center gap-2 font-semibold transition-all group-hover:gap-4"
+                  className="mt-8 flex items-center gap-1 font-semibold transition-all group-hover:gap-4"
                   style={{ color: item.color }}
                 >
                   {item.cta}
-                  <HiOutlineArrowRight size={20} />
+                  <HiOutlineArrowRight size={20} className="-mb-1" />
                 </div>
               </Link>
             );

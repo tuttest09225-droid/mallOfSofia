@@ -50,7 +50,7 @@ export default function CinemaSpotlight() {
 
           <Link
             to="/cinema"
-            className="group hidden items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-semibold transition-all hover:border-primary hover:bg-primary md:flex"
+            className="group hidden items-center gap-2 rounded-lg border border-white/20 px-5 py-2.5 text-sm font-semibold transition-all hover:border-primary hover:bg-primary md:flex"
           >
             {t("cinema.schedule")}
 
@@ -66,7 +66,7 @@ export default function CinemaSpotlight() {
           {movies.map((movie, index) => (
             <article
               key={movie.title}
-              className="group min-w-[82%] snap-start overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04] transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.06] sm:min-w-[55%] md:min-w-0"
+              className="group min-w-[82%] snap-start overflow-hidden rounded-xl border border-white/10 bg-white/[0.04] transition-all duration-300 hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.06] sm:min-w-[55%] md:min-w-0"
             >
               {/* Poster */}
               <div className="relative aspect-[2/3] overflow-hidden">

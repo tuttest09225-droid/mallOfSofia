@@ -16,7 +16,7 @@ export default function MobileFloatingActions() {
   };
 
   return (
-    <div className="fixed bottom-6 right-4 z-50 flex flex-col overflow-hidden rounded-full border border-base-300 bg-base-100/95 shadow-xl backdrop-blur-xl">
+    <div className="fixed bottom-6 right-4 z-50 flex flex-col overflow-hidden rounded-full border border-primary bg-base-100/40 shadow-xl backdrop-blur-sm">
       {/* Back To Top */}
       {showBackToTop && (
         <>
@@ -24,14 +24,12 @@ export default function MobileFloatingActions() {
             type="button"
             aria-label="Back to top"
             onClick={scrollToTop}
-            className="flex h-12 w-12 items-center justify-center text-base-content transition-colors hover:bg-base-200"
+            className="flex h-12 w-12 items-center justify-center text-primary transition-colors hover:bg-base-200"
           >
             <ArrowUp size={21} />
           </button>
 
-          {showFloatingActions && (
-            <div className="mx-2 border-t border-base-300" />
-          )}
+            <div className="mx-2 border-t border-primary" />
         </>
       )}
 
@@ -46,9 +44,7 @@ export default function MobileFloatingActions() {
         <MapPin size={21} />
       </button>
 
-      {showFloatingActions && (
-        <div className="mx-2 border-t border-base-300 lg:hidden" />
-      )}
+        <div className="mx-2 border-t border-primary lg:hidden" />
 
       {/* Mobile Search */}
       <button

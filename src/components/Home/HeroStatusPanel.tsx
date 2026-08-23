@@ -118,7 +118,7 @@ type StatusRowProps = {
 function StatusRow({ icon, text }: StatusRowProps) {
   return (
     <div className="flex items-center gap-3 text-sm">
-      <div className="text-red-500">{icon}</div>
+      <div className="text-green-400">{icon}</div>
       <span>{text}</span>
     </div>
   );

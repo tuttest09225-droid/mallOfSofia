@@ -78,17 +78,17 @@ const badgeStyles: Record<
   loyalty: {
     icon: HiOutlineStar,
     color: "text-[#F8B615]",
-    bg: "bg-[#F8B615]/10",
+    bg: "bg-[#F8B615]/30",
   },
   offers: {
     icon: HiOutlineFire,
     color: "text-[#EB2129]",
-    bg: "bg-[#EB2129]/10",
+    bg: "bg-[#EB2129]/30",
   },
   events: {
     icon: HiOutlineTicket,
     color: "text-[#105BA9]",
-    bg: "bg-[#105BA9]/10",
+    bg: "bg-[#105BA9]/30",
   },
 };
 
@@ -96,9 +96,10 @@ export default function FeaturedPartners() {
   const { t } = useTranslation();
 
   return (
-    <section className="block overflow-hidden border-y border-base-300 bg-base-200/40 py-4 lg:py-8">
+    <section className="relative block overflow-hidden border-y border-base-300/60 bg-base-200/75 backdrop-blur-[2px] lg:py-8">
+      {" "}
       {/* Section Header */}
-      <div className="mx-auto my-4 max-w-7xl px-6 lg:mb-10 lg:px-8">
+      <div className="mx-auto mb-4 mt-6 max-w-7xl px-6 lg:mb-10 lg:px-8">
         <div className="text-center">
           <p className="text-xl font-semibold uppercase tracking-[0.35em] text-base-content/50">
             {t("featuredPartners.title")}
@@ -113,13 +114,12 @@ export default function FeaturedPartners() {
           ))}
         </div>
       </div> */}
-
       {/* Auto Marquee */}
       <div className="relative overflow-hidden">
         {/* Fade Edges */}
-        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-32 bg-gradient-to-r from-base-200/90 to-transparent" />
+        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-32 bg-gradient-to-r from-base-200/90 via-base-200/40 to-transparent" />
 
-        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-32 bg-gradient-to-l from-base-200/90 to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-32 bg-gradient-to-l from-base-200/90 via-base-200/40 to-transparent" />
 
         <motion.div
           className="flex w-max gap-5 py-3"
@@ -154,7 +154,7 @@ function PartnerCard({ partner }: PartnerCardProps) {
       aria-label={t("featuredPartners.visit", {
         name: partner.name,
       })}
-      className="group relative flex h-32 min-w-60 snap-start items-center justify-center overflow-hidden rounded-xl border border-base-300 bg-base-100 p-5 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-lg sm:min-w-[260px]"
+      className="group relative flex h-32 min-w-60 snap-start items-center justify-center overflow-hidden rounded-xl border border-base-300 bg-base-100/90 p-10 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-lg sm:min-w-[260px]"
     >
       {/* Brand Logo */}
       <div className="flex h-full w-full items-center justify-center">
@@ -172,7 +172,7 @@ function PartnerCard({ partner }: PartnerCardProps) {
       </div>
 
       {/* Badges */}
-      <div className="absolute left-2 top-2 z-10 flex flex-wrap gap-1.5">
+      <div className="absolute left-2 top-2 z-10 flex flex-col gap-1.5">
         {partner.badges.map((badge) => {
           const BadgeIcon = badgeStyles[badge].icon;
           const { color, bg } = badgeStyles[badge];
@@ -180,11 +180,11 @@ function PartnerCard({ partner }: PartnerCardProps) {
           return (
             <span
               key={badge}
-              className={`flex items-center gap-1 rounded-full px-2 py-1 text-[9px] font-semibold uppercase tracking-wide shadow-sm backdrop-blur-sm ${color} ${bg}`}
+              className={`group/badge flex w-fit items-center overflow-hidden rounded-2xl px-2 py-1 text-[9px] font-semibold uppercase tracking-wide backdrop-blur-sm shadow-sm transition-all duration-300 ${color} ${bg}`}
             >
-              <BadgeIcon className="h-3 w-3" />
+              <BadgeIcon className="h-5 w-5 shrink-0" />
 
-              <span className="hidden sm:inline">
+              <span className="max-w-0 overflow-hidden whitespace-nowrap text-base-content opacity-0 transition-all duration-300 group-hover/badge:max-w-24 group-hover/badge:opacity-100">
                 {t(`featuredPartners.badges.${badge}`)}
               </span>
             </span>

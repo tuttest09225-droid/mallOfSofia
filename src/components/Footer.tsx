@@ -200,7 +200,16 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <HiOutlineMapPin size={18} className="mt-0.5 shrink-0" />
 
-                <span>{t("footer.contacts.address")}</span>
+                <a
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                    t("footer.contacts.address"),
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="transition hover:text-primary"
+                >
+                  {t("footer.contacts.address")}
+                </a>
               </li>
 
               <li className="flex items-center gap-3">

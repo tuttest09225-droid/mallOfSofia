@@ -1,4 +1,3 @@
-
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -8,7 +7,34 @@ import HeroStatusPanel from "./HeroStatusPanel";
 
 export default function Hero() {
   const { t } = useTranslation();
+  const scrollOneScreen = () => {
+    const startPosition = window.scrollY;
+    const targetPosition = startPosition + window.innerHeight;
+    const duration = 1400;
+    const startTime = performance.now();
 
+    const easeInOutCubic = (progress: number) =>
+      progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+    const animateScroll = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const easedProgress = easeInOutCubic(progress);
+
+      window.scrollTo(
+        0,
+        startPosition + (targetPosition - startPosition) * easedProgress - 150,
+      );
+
+      if (progress < 1) {
+        requestAnimationFrame(animateScroll);
+      }
+    };
+
+    requestAnimationFrame(animateScroll);
+  };
   return (
     <section
       id="home-hero"
@@ -108,7 +134,7 @@ export default function Hero() {
               delay: 1.9,
               duration: 1.2,
             }}
-            className="mt-4 text-lg text-white/80 md:mt-6 md:text-2xl"
+            className="mt-4 text-lg text-white/80 md:mt-6 md:text-4xl"
           >
             {t("hero.subtitle")}
           </motion.p>
@@ -127,14 +153,14 @@ export default function Hero() {
         >
           <Link
             to="/shops"
-            className="btn btn-primary min-h-14 rounded-2xl px-8 text-base sm:px-10 sm:text-lg hover:bg-white hover:text-black border-2"
+            className="btn btn-primary min-h-14 rounded-xl px-8 text-base sm:px-10 sm:text-lg hover:bg-white hover:text-black border-2"
           >
             {t("hero.CTAdiscover")}
           </Link>
 
           <Link
             to="/events"
-            className="btn btn-outline min-h-14 rounded-2xl border-white px-8 text-base text-white hover:border-white hover:bg-white hover:text-black sm:px-10 sm:text-lg"
+            className="btn min-h-14 rounded-xl border border-white/40 bg-black/30 px-8 text-base text-white backdrop-blur-sm transition-all hover:border-white hover:bg-white hover:text-black sm:px-10 sm:text-lg"
           >
             {t("hero.CTAevents")}
           </Link>
@@ -160,22 +186,26 @@ export default function Hero() {
       {/* SCROLL INDICATOR */}
       {/* ====================================================== */}
 
-      <motion.div
-        animate={{ y: [0, 10, 0] }}
+      <motion.button
+        type="button"
+        onClick={scrollOneScreen}
+        animate={{ y: [0, 12, 0] }}
         transition={{
           repeat: Infinity,
-          duration: 2,
+          duration: 3.5,
+          ease: "easeInOut",
         }}
-        className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-white lg:bottom-10"
+        className="hidden absolute bottom-6 left-1/2 z-10 lg:flex -translate-x-1/2 cursor-pointer flex-col items-center gap-1 text-white transition-opacity hover:opacity-70 lg:bottom-10"
+        aria-label={t("hero.scrollDown")}
       >
-        <div className="flex flex-col items-center gap-1">
-          <span className="text-[10px] uppercase tracking-[0.3em]">
-            {t("hero.scrollDown")}
-          </span>
+        <span className="text-[10px] uppercase tracking-[0.3em]">
+          {t("hero.scrollDown")}
+        </span>
 
-          <div className="text-xl">↓</div>
-        </div>
-      </motion.div>
+        <span className="text-xl" aria-hidden="true">
+          ↓
+        </span>
+      </motion.button>
     </section>
   );
 }
