@@ -154,7 +154,7 @@ function PartnerCard({ partner }: PartnerCardProps) {
       aria-label={t("featuredPartners.visit", {
         name: partner.name,
       })}
-      className="group relative flex h-32 min-w-60 snap-start items-center justify-center overflow-hidden rounded-xl border border-base-300 bg-base-100/90 p-10 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-lg sm:min-w-[260px]"
+      className="group relative flex h-20 min-w-24 lg:h-32 lg:min-w-60 snap-start items-center justify-center overflow-hidden rounded-xl border border-base-300 bg-base-100/90 ps-12 pe-4 py-8 lg:p-10 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-lg sm:min-w-[260px]"
     >
       {/* Brand Logo */}
       <div className="flex h-full w-full items-center justify-center">
@@ -162,7 +162,7 @@ function PartnerCard({ partner }: PartnerCardProps) {
           <img
             src={partner.logo}
             alt={partner.name}
-            className="max-h-32 object-contain transition-all duration-300 group-hover:scale-105"
+            className="max-h-14 lg:max-h-32 object-contain transition-all duration-300 group-hover:scale-105"
           />
         ) : (
           <span className="text-2xl font-semibold tracking-wide text-base-content/40 transition-colors duration-300 group-hover:text-base-content">
