@@ -80,13 +80,13 @@
     "stores": {
       "title": "Stores",
       "value": "130+",
-      "subtitle": "Fashion, beauty, tech & more",
+      "subtitle": "Fashion, beauty & more",
       "CTA": "Discover stores"
     },
     "events": {
       "title": "Events",
       "value": "3",
-      "subtitle": "Active this week",
+      "subtitle": "Active now",
       "CTA": "See what's happening"
     },
     "dining": {
@@ -97,7 +97,7 @@
     },
     "loyalty": {
       "title": "Loyalty",
-      "subtitle": "Exclusive member benefits",
+      "subtitle": "Exclusive benefits",
       "CTA": "Join today"
     },
     "close": "Close"

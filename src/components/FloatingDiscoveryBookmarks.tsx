@@ -15,9 +15,7 @@ import {
   HiOutlineXMark,
 } from "react-icons/hi2";
 
-type BookmarkVisibility =
-  | "always"
-  | "after-discovery";
+type BookmarkVisibility = "always" | "after-discovery";
 
 type FloatingDiscoveryBookmarksProps = {
   visibility?: BookmarkVisibility;
@@ -71,11 +69,9 @@ export default function FloatingDiscoveryBookmarks({
 }: FloatingDiscoveryBookmarksProps) {
   const { t } = useTranslation();
 
-  const [activeCard, setActiveCard] =
-    useState<number | null>(null);
+  const [activeCard, setActiveCard] = useState<number | null>(null);
 
-  const [showBookmarks, setShowBookmarks] =
-    useState(visibility === "always");
+  const [showBookmarks, setShowBookmarks] = useState(visibility === "always");
 
   /**
    * Controls when the bookmark system is visible.
@@ -93,8 +89,7 @@ export default function FloatingDiscoveryBookmarks({
       return;
     }
 
-    const discoverySection =
-      document.getElementById(discoverySectionId);
+    const discoverySection = document.getElementById(discoverySectionId);
 
     const footer = document.getElementById(footerId);
 
@@ -104,23 +99,16 @@ export default function FloatingDiscoveryBookmarks({
     }
 
     const updateBookmarkState = () => {
-      const sectionRect =
-        discoverySection.getBoundingClientRect();
+      const sectionRect = discoverySection.getBoundingClientRect();
 
-      const hasPassedDiscovery =
-        sectionRect.bottom <
-        -FLOATING_BOOKMARK_OFFSET;
+      const hasPassedDiscovery = sectionRect.bottom < -FLOATING_BOOKMARK_OFFSET;
 
       if (footer) {
-        const footerRect =
-          footer.getBoundingClientRect();
+        const footerRect = footer.getBoundingClientRect();
 
-        const footerIsVisible =
-          footerRect.top < window.innerHeight;
+        const footerIsVisible = footerRect.top < window.innerHeight;
 
-        setShowBookmarks(
-          hasPassedDiscovery && !footerIsVisible,
-        );
+        setShowBookmarks(hasPassedDiscovery && !footerIsVisible);
 
         if (footerIsVisible) {
           setActiveCard(null);
@@ -134,35 +122,18 @@ export default function FloatingDiscoveryBookmarks({
 
     updateBookmarkState();
 
-    window.addEventListener(
-      "scroll",
-      updateBookmarkState,
-      {
-        passive: true,
-      },
-    );
+    window.addEventListener("scroll", updateBookmarkState, {
+      passive: true,
+    });
 
-    window.addEventListener(
-      "resize",
-      updateBookmarkState,
-    );
+    window.addEventListener("resize", updateBookmarkState);
 
     return () => {
-      window.removeEventListener(
-        "scroll",
-        updateBookmarkState,
-      );
+      window.removeEventListener("scroll", updateBookmarkState);
 
-      window.removeEventListener(
-        "resize",
-        updateBookmarkState,
-      );
+      window.removeEventListener("resize", updateBookmarkState);
     };
-  }, [
-    visibility,
-    discoverySectionId,
-    footerId,
-  ]);
+  }, [visibility, discoverySectionId, footerId]);
 
   /**
    * Close an active bookmark when clicking outside
@@ -173,30 +144,18 @@ export default function FloatingDiscoveryBookmarks({
       return;
     }
 
-    const handlePointerDown = (
-      event: PointerEvent,
-    ) => {
+    const handlePointerDown = (event: PointerEvent) => {
       const target = event.target as HTMLElement;
 
-      if (
-        !target.closest(
-          "[data-discovery-bookmark]",
-        )
-      ) {
+      if (!target.closest("[data-discovery-bookmark]")) {
         setActiveCard(null);
       }
     };
 
-    document.addEventListener(
-      "pointerdown",
-      handlePointerDown,
-    );
+    document.addEventListener("pointerdown", handlePointerDown);
 
     return () => {
-      document.removeEventListener(
-        "pointerdown",
-        handlePointerDown,
-      );
+      document.removeEventListener("pointerdown", handlePointerDown);
     };
   }, [activeCard]);
 
@@ -227,8 +186,7 @@ export default function FloatingDiscoveryBookmarks({
               {cards.map((card, index) => {
                 const Icon = card.icon;
 
-                const isActive =
-                  activeCard === index;
+                const isActive = activeCard === index;
 
                 return (
                   <div
@@ -248,8 +206,7 @@ export default function FloatingDiscoveryBookmarks({
                             opacity: 0.95,
                           }}
                           animate={{
-                            width:
-                              "min(760px, calc(100vw - 16px))",
+                            width: "min(760px, calc(100vw - 20px))",
                             opacity: 1,
                           }}
                           exit={{
@@ -258,12 +215,7 @@ export default function FloatingDiscoveryBookmarks({
                           }}
                           transition={{
                             duration: 0.4,
-                            ease: [
-                              0.22,
-                              1,
-                              0.36,
-                              1,
-                            ],
+                            ease: [0.22, 1, 0.36, 1],
                           }}
                           className="absolute left-0 top-0 z-10 overflow-visible"
                         >
@@ -272,8 +224,7 @@ export default function FloatingDiscoveryBookmarks({
                           <div
                             className="relative overflow-hidden rounded-r-xl border-2 bg-base-100 shadow-[0_12px_40px_rgb(0,0,0,0.14)]"
                             style={{
-                              borderColor:
-                                card.color,
+                              borderColor: card.color,
                               minHeight: 56,
                               maxHeight: 96,
                             }}
@@ -283,8 +234,7 @@ export default function FloatingDiscoveryBookmarks({
                             <div
                               className="absolute bottom-0 left-0 top-0 z-30 w-1.5"
                               style={{
-                                backgroundColor:
-                                  card.color,
+                                backgroundColor: card.color,
                               }}
                             />
 
@@ -293,18 +243,15 @@ export default function FloatingDiscoveryBookmarks({
                             <motion.div
                               initial={{
                                 opacity: 0,
-                                visibility:
-                                  "hidden",
+                                visibility: "hidden",
                               }}
                               animate={{
                                 opacity: 1,
-                                visibility:
-                                  "visible",
+                                visibility: "visible",
                               }}
                               exit={{
                                 opacity: 0,
-                                visibility:
-                                  "hidden",
+                                visibility: "hidden",
                               }}
                               transition={{
                                 opacity: {
@@ -321,80 +268,52 @@ export default function FloatingDiscoveryBookmarks({
                             >
                               <Link
                                 to={card.href}
-                                onClick={() =>
-                                  setActiveCard(null)
-                                }
+                                onClick={() => setActiveCard(null)}
                                 className="group block"
                               >
-                                <div className="grid grid-cols-3 items-center gap-1 px-2 py-1 pl-7">
+                                <div className="grid grid-cols-[2fr_2fr_1fr] text-center items-center gap-2 p-4 pl-14">
                                   {/* 1/3 — ICON + TITLE */}
 
-                                  <div className="flex min-w-0 items-center gap-2">
-                                    <div
-                                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
-                                      style={{
-                                        backgroundColor: `${card.color}12`,
-                                        color:
-                                          card.color,
-                                      }}
-                                    >
-                                      <Icon size={30} />
-                                    </div>
-
                                     <div className="min-w-0">
-                                      <p
-                                        className="text-xs font-semibold uppercase tracking-[0.18em]"
-                                        style={{
-                                          color:
-                                            card.color,
-                                        }}
-                                      >
-                                        {t(
-                                          `discovery.${card.key}.title`,
-                                        )}
-                                      </p>
 
-                                      {card.key !==
-                                        "loyalty" && (
-                                        <h3 className="mt-1 text-xl font-bold text-base-content">
-                                          {t(
-                                            `discovery.${card.key}.value`,
-                                          )}
+                                      {card.key !== "loyalty" && (
+                                        <h3 className="text-center mt-1 text-xl font-bold text-base-content">
+                                          {t(`discovery.${card.key}.value`)}
                                         </h3>
                                       )}
+                                      <p
+                                        className="text-lg font-semibold uppercase"
+                                        style={{
+                                          color: card.color,
+                                        }}
+                                      >
+                                        {t(`discovery.${card.key}.title`)}
+                                      </p>
                                     </div>
-                                  </div>
 
                                   {/* 1/3 — DESCRIPTION */}
-
-                                  <p className="max-h-24 min-w-0 text-sm leading-relaxed text-base-content/60">
-                                    {t(
-                                      `discovery.${card.key}.subtitle`,
-                                    )}
-                                  </p>
+                                    <p className="mx-1 max-h-24 min-w-0 text-sm leading-relaxed text-base-content/60">
+                                      {t(`discovery.${card.key}.subtitle`)}
+                                    </p>
 
                                   {/* 1/3 — CTA */}
 
-                                  <div className="flex flex-col items-end justify-center gap-1 pr-3">
-                                    <HiOutlineChevronRight
-                                      size={24}
+                                  <div className="flex items-center justify-center gap-1">
+                                    {/* <div
+                                      className="flex self-center gap-2 text-right text-sm font-semibold transition-all group-hover:gap-3"
                                       style={{
-                                        color:
-                                          card.color,
-                                      }}
-                                    />
-
-                                    <div
-                                      className="flex items-center gap-2 text-right text-sm font-semibold transition-all group-hover:gap-3"
-                                      style={{
-                                        color:
-                                          card.color,
+                                        color: card.color,
                                       }}
                                     >
-                                      {t(
-                                        `discovery.${card.key}.CTA`,
-                                      )}
-                                    </div>
+                                      {t(`discovery.${card.key}.CTA`)}
+                                    </div> */}
+                                    <HiOutlineChevronRight
+                                      size={40}
+                                      style={{
+                                        color: card.color,
+                                        strokeWidth: 3.5,
+                                      }}
+                                    />
                                   </div>
                                 </div>
                               </Link>
@@ -410,22 +329,16 @@ export default function FloatingDiscoveryBookmarks({
 
                               setActiveCard(null);
                             }}
-                            className="absolute -right-3 -top-3 z-50 flex h-8 w-8 items-center justify-center rounded-full border-2 bg-base-100 shadow-md transition-all hover:scale-110 hover:bg-base-200 active:scale-95"
+                            className="absolute -right-1 -top-1 z-50 flex h-6 w-6 items-center justify-center rounded-full border-2 bg-base-100 shadow-md transition-all hover:scale-110 hover:bg-base-200 active:scale-95"
                             style={{
-                              borderColor:
-                                card.color,
+                              borderColor: card.color,
                               color: card.color,
                             }}
-                            aria-label={`${t(
-                              "discovery.close",
-                            )} ${t(
+                            aria-label={`${t("discovery.close")} ${t(
                               `discovery.${card.key}.title`,
                             )}`}
                           >
-                            <HiOutlineXMark
-                              size={20}
-                              strokeWidth={2.5}
-                            />
+                            <HiOutlineXMark size={20} strokeWidth={2.5} />
                           </button>
                         </motion.div>
                       )}
@@ -437,20 +350,12 @@ export default function FloatingDiscoveryBookmarks({
 
                     <button
                       type="button"
-                      onClick={() =>
-                        setActiveCard(
-                          isActive
-                            ? null
-                            : index,
-                        )
-                      }
+                      onClick={() => setActiveCard(isActive ? null : index)}
                       className="absolute left-0 top-0 z-30 flex h-14 w-12 items-center justify-center rounded-r-2xl border-2 bg-base-100/30 text-white shadow-lg backdrop-blur-sm transition-transform duration-200 active:scale-95"
                       style={{
                         borderColor: card.color,
                       }}
-                      aria-label={t(
-                        `discovery.${card.key}.title`,
-                      )}
+                      aria-label={t(`discovery.${card.key}.title`)}
                       aria-expanded={isActive}
                     >
                       <Icon

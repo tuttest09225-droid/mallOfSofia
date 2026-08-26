@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import {
@@ -48,7 +48,38 @@ export default function WhatsHappening() {
       current === 0 ? happenings.length - 1 : current - 1,
     );
   };
+  const touchStartX = useRef<number | null>(null);
+  const touchEndX = useRef<number | null>(null);
 
+  const SWIPE_THRESHOLD = 50;
+
+  const handleTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+    touchStartX.current = event.touches[0].clientX;
+    touchEndX.current = null;
+  };
+
+  const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
+    touchEndX.current = event.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX.current === null || touchEndX.current === null) {
+      return;
+    }
+
+    const swipeDistance = touchStartX.current - touchEndX.current;
+
+    if (swipeDistance > SWIPE_THRESHOLD) {
+      next();
+    }
+
+    if (swipeDistance < -SWIPE_THRESHOLD) {
+      previous();
+    }
+
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
   return (
     <section className="py-10 lg:py-20">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -74,8 +105,14 @@ export default function WhatsHappening() {
         </div>
 
         {/* Mobile Carousel */}
+        {/* Mobile Carousel */}
         <div className="relative md:hidden">
-          <div className="overflow-hidden">
+          <div
+            className="overflow-hidden touch-pan-y"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
             <div
               className="flex transition-transform duration-500 ease-out"
               style={{
@@ -92,8 +129,10 @@ export default function WhatsHappening() {
                     className="w-full shrink-0 pr-1"
                   >
                     <article
-                      className="group min-h-[280px] rounded-lg border bg-base-100/90 backdrop-blur-sm p-7 transition-all duration-300 hover:border-primary/70"
-                      style={{ borderColor: item.color }}
+                      className="group min-h-[280px] rounded-lg border bg-base-100/90 p-7 backdrop-blur-sm transition-all duration-300 hover:border-primary/70"
+                      style={{
+                        borderColor: item.color,
+                      }}
                     >
                       {/* Badge */}
                       <div className="flex items-center justify-between">
@@ -108,7 +147,12 @@ export default function WhatsHappening() {
                           {item.type}
                         </span>
 
-                        <span className="text-sm" style={{ color: item.color }}>
+                        <span
+                          className="text-sm"
+                          style={{
+                            color: item.color,
+                          }}
+                        >
                           {item.timing}
                         </span>
                       </div>
@@ -125,7 +169,9 @@ export default function WhatsHappening() {
                       {/* CTA */}
                       <div
                         className="mt-8 flex items-center gap-2 font-semibold transition-all group-hover:gap-4"
-                        style={{ color: item.color }}
+                        style={{
+                          color: item.color,
+                        }}
                       >
                         {item.cta}
                         <HiOutlineArrowRight size={20} />
@@ -207,9 +253,7 @@ export default function WhatsHappening() {
                     {item.type}
                   </span>
 
-                  <span className="text-sm"
-                    style={{ color: item.color }}
-                  >
+                  <span className="text-sm" style={{ color: item.color }}>
                     {item.timing}
                   </span>
                 </div>

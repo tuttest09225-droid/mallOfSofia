@@ -1,5 +1,4 @@
-import { useEffect} from "react";
-
+import { useEffect } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -41,27 +40,20 @@ const cards = [
   },
 ];
 
-
 export default function DiscoverSection() {
   const { t } = useTranslation();
-
 
   /**
    * Show the floating bookmarks only after the entire discovery
    * section has left the viewport, with a small additional buffer.
    */
   useEffect(() => {
-    const discoverySection =
-      document.getElementById("discovery-section");
-
+    const discoverySection = document.getElementById("discovery-section");
 
     if (!discoverySection) {
       return;
     }
   }, []);
-
-
-    
 
   return (
     <section
@@ -73,8 +65,7 @@ export default function DiscoverSection() {
       ====================================================== */}
 
       <div className="lg:hidden">
-
-        <div className="mx-auto flex w-full max-w-3xl flex-col gap-4 px-4 py-6">
+        <div className="mx-auto flex w-full max-w-3xl flex-col gap-1 p-1">
           {cards.map((card) => {
             const Icon = card.icon;
 
@@ -82,82 +73,67 @@ export default function DiscoverSection() {
               <Link
                 key={card.key}
                 to={card.href}
-                className="group block overflow-hidden rounded-xl border bg-base-100 py-1 px-2 shadow-sm transition-all duration-300 active:scale-[0.99]"
+                className="group block overflow-hidden rounded-xl border bg-base-100 p-4 shadow-sm transition-all duration-300 active:scale-[0.99]"
                 style={{
                   borderColor: card.color,
                   borderWidth: "2px",
                 }}
               >
-                <div className="grid grid-cols-3 items-center gap-2">
+                <div className="grid grid-cols-3 text-center items-center gap-4">
                   {/* ==================================================
                       1/3 — ICON + TITLE + AMOUNT
                   ================================================== */}
 
-                  <div className="flex min-w-0 items-center gap-1">
-                    <div
-                      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl"
-                      style={{
-                        backgroundColor: `${card.color}12`,
-                        color: card.color,
-                      }}
-                    >
-                      <Icon size={30} />
-                    </div>
+                  <div className="flex flex-col min-w-0 items-center gap-2">
+                    <div className="flex flex-row min-w-0 gap-2">
+                      <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl"
+                        style={{
+                          backgroundColor: `${card.color}12`,
+                          color: card.color,
+                        }}
+                      >
+                        <Icon size={30} />
 
-                    <div className="min-w-0">
+                      </div>
+                        {card.key !== "loyalty" && (
+                          <h3 className="mt-1 text-xl font-bold text-base-content self-center">
+                            {t(`discovery.${card.key}.value`)}
+                          </h3>
+                        )}
+
+                    </div>
                       <p
                         className="text-xs font-semibold uppercase tracking-[0.18em]"
                         style={{
                           color: card.color,
                         }}
                       >
-                        {t(
-                          `discovery.${card.key}.title`,
-                        )}
+                        {t(`discovery.${card.key}.title`)}
                       </p>
-
-                      {card.key !== "loyalty" && (
-                        <h3 className="mt-1 text-xl font-bold text-base-content">
-                          {t(
-                            `discovery.${card.key}.value`,
-                          )}
-                        </h3>
-                      )}
-                    </div>
                   </div>
 
-                  {/* ==================================================
-                      1/3 — DESCRIPTION
-                  ================================================== */}
-
-                  <p className="min-w-0 text-sm leading-relaxed text-base-content/60">
-                    {t(
-                      `discovery.${card.key}.subtitle`,
-                    )}
+                  {/* 1/3 — DESCRIPTION */}
+                  <p className="mx-1 max-h-24 min-w-0 text-sm leading-relaxed text-base-content/60">
+                    {t(`discovery.${card.key}.subtitle`)}
                   </p>
 
-                  {/* ==================================================
-                      1/3 — ARROW + CTA
-                  ================================================== */}
+                  {/* 1/3 — CTA */}
 
-                  <div className="flex flex-col items-end justify-center gap-1">
-                    <HiOutlineChevronRight
-                      size={24}
-                      style={{
-                        color: card.color,
-                      }}
-                    />
-
+                  <div className="flex items-center justify-center gap-1">
                     <div
-                      className="flex items-center gap-2 text-right text-sm font-semibold transition-all group-hover:gap-3"
+                      className="flex self-center gap-2 text-right text-sm font-semibold transition-all group-hover:gap-3"
                       style={{
                         color: card.color,
                       }}
                     >
-                      {t(
-                        `discovery.${card.key}.CTA`,
-                      )}
+                      {t(`discovery.${card.key}.CTA`)}
                     </div>
+                    <HiOutlineChevronRight
+                      size={40}
+                      style={{
+                        color: card.color,
+                      }}
+                    />
                   </div>
                 </div>
               </Link>
@@ -217,25 +193,19 @@ export default function DiscoverSection() {
                         color: card.color,
                       }}
                     >
-                      {t(
-                        `discovery.${card.key}.title`,
-                      )}
+                      {t(`discovery.${card.key}.title`)}
                     </p>
 
                     {card.key !== "loyalty" && (
                       <h3 className="mt-1 text-3xl font-bold text-base-content">
-                        {t(
-                          `discovery.${card.key}.value`,
-                        )}
+                        {t(`discovery.${card.key}.value`)}
                       </h3>
                     )}
                   </div>
                 </div>
 
                 <p className="mt-6 text-lg text-base-content/60">
-                  {t(
-                    `discovery.${card.key}.subtitle`,
-                  )}
+                  {t(`discovery.${card.key}.subtitle`)}
                 </p>
 
                 <div
@@ -244,9 +214,7 @@ export default function DiscoverSection() {
                     color: card.color,
                   }}
                 >
-                  {t(
-                    `discovery.${card.key}.CTA`,
-                  )}
+                  {t(`discovery.${card.key}.CTA`)}
 
                   <HiOutlineArrowRight size={20} />
                 </div>

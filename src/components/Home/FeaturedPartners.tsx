@@ -1,6 +1,11 @@
+import { useState } from "react";
+
 import { motion } from "framer-motion";
+
 import { HiOutlineFire, HiOutlineStar, HiOutlineTicket } from "react-icons/hi2";
+
 import { Link } from "react-router-dom";
+
 import { useTranslation } from "react-i18next";
 
 import ZaraLogo from "../../assets/ZaraLogo.png";
@@ -80,11 +85,13 @@ const badgeStyles: Record<
     color: "text-[#F8B615]",
     bg: "bg-[#F8B615]/30",
   },
+
   offers: {
     icon: HiOutlineFire,
     color: "text-[#EB2129]",
     bg: "bg-[#EB2129]/30",
   },
+
   events: {
     icon: HiOutlineTicket,
     color: "text-[#105BA9]",
@@ -95,9 +102,13 @@ const badgeStyles: Record<
 export default function FeaturedPartners() {
   const { t } = useTranslation();
 
+  const [isPaused, setIsPaused] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+
+  const shouldPause = isPaused || isDragging;
+
   return (
     <section className="relative block overflow-hidden border-y border-base-300/60 bg-base-200/75 backdrop-blur-[2px] lg:py-8">
-      {" "}
       {/* Section Header */}
       <div className="mx-auto mb-4 mt-6 max-w-7xl px-6 lg:mb-10 lg:px-8">
         <div className="text-center">
@@ -106,14 +117,7 @@ export default function FeaturedPartners() {
           </p>
         </div>
       </div>
-      {/* Mobile — Manual Snap Carousel */}
-      {/* <div className="lg:hidden">
-        <div className="mx-2 flex snap-x snap-mandatory gap-4 overflow-x-auto p-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {partners.map((partner) => (
-            <PartnerCard key={partner.name} partner={partner} />
-          ))}
-        </div>
-      </div> */}
+
       {/* Auto Marquee */}
       <div className="relative overflow-hidden">
         {/* Fade Edges */}
@@ -122,10 +126,26 @@ export default function FeaturedPartners() {
         <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-32 bg-gradient-to-l from-base-200/90 via-base-200/40 to-transparent" />
 
         <motion.div
-          className="flex w-max gap-5 py-3"
-          animate={{
-            x: ["0%", "-50%"],
+          className="flex w-max cursor-grab gap-5 py-3 active:cursor-grabbing"
+          drag="x"
+          dragConstraints={{
+            left: -10000,
+            right: 0,
           }}
+          dragElastic={0.05}
+          onDragStart={() => {
+            setIsDragging(true);
+          }}
+          onDragEnd={() => {
+            setIsDragging(false);
+          }}
+          animate={
+            shouldPause
+              ? undefined
+              : {
+                  x: ["0%", "-50%"],
+                }
+          }
           transition={{
             duration: 32,
             ease: "linear",
@@ -133,7 +153,16 @@ export default function FeaturedPartners() {
           }}
         >
           {marquee.map((partner, index) => (
-            <PartnerCard key={`${partner.name}-${index}`} partner={partner} />
+            <PartnerCard
+              key={`${partner.name}-${index}`}
+              partner={partner}
+              onInteractionStart={() => {
+                setIsPaused(true);
+              }}
+              onInteractionEnd={() => {
+                setIsPaused(false);
+              }}
+            />
           ))}
         </motion.div>
       </div>
@@ -143,9 +172,15 @@ export default function FeaturedPartners() {
 
 type PartnerCardProps = {
   partner: Partner;
+  onInteractionStart: () => void;
+  onInteractionEnd: () => void;
 };
 
-function PartnerCard({ partner }: PartnerCardProps) {
+function PartnerCard({
+  partner,
+  onInteractionStart,
+  onInteractionEnd,
+}: PartnerCardProps) {
   const { t } = useTranslation();
 
   return (
@@ -154,7 +189,12 @@ function PartnerCard({ partner }: PartnerCardProps) {
       aria-label={t("featuredPartners.visit", {
         name: partner.name,
       })}
-      className="group relative flex h-20 min-w-24 lg:h-32 lg:min-w-60 snap-start items-center justify-center overflow-hidden rounded-xl border border-base-300 bg-base-100/90 ps-12 pe-4 py-8 lg:p-10 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-lg sm:min-w-[260px]"
+      onMouseEnter={onInteractionStart}
+      onMouseLeave={onInteractionEnd}
+      onPointerDown={onInteractionStart}
+      onPointerUp={onInteractionEnd}
+      onPointerCancel={onInteractionEnd}
+      className="group relative flex h-20 min-w-24 snap-start items-center justify-center overflow-hidden rounded-xl border border-base-300 bg-base-100/90 py-8 ps-12 pe-4 transition-all duration-300 hover:-translate-y-1 hover:border-primary hover:shadow-lg lg:h-32 lg:min-w-60 lg:p-10 sm:min-w-[260px]"
     >
       {/* Brand Logo */}
       <div className="flex h-full w-full items-center justify-center">
@@ -162,7 +202,8 @@ function PartnerCard({ partner }: PartnerCardProps) {
           <img
             src={partner.logo}
             alt={partner.name}
-            className="max-h-14 lg:max-h-32 object-contain transition-all duration-300 group-hover:scale-105"
+            draggable={false}
+            className="max-h-14 select-none object-contain transition-all duration-300 group-hover:scale-105 lg:max-h-32"
           />
         ) : (
           <span className="text-2xl font-semibold tracking-wide text-base-content/40 transition-colors duration-300 group-hover:text-base-content">
@@ -180,11 +221,11 @@ function PartnerCard({ partner }: PartnerCardProps) {
           return (
             <span
               key={badge}
-              className={`group/badge flex w-fit items-center overflow-hidden rounded-2xl px-2 py-1 text-[9px] font-semibold uppercase tracking-wide backdrop-blur-sm shadow-sm transition-all duration-300 ${color} ${bg}`}
+              className={`flex w-fit items-center gap-1 overflow-hidden rounded-2xl px-2 py-1 text-[9px] font-semibold uppercase tracking-wide backdrop-blur-sm shadow-sm transition-all duration-300 ${color} ${bg}`}
             >
               <BadgeIcon className="h-5 w-5 shrink-0" />
 
-              <span className="max-w-0 overflow-hidden whitespace-nowrap text-base-content opacity-0 transition-all duration-300 group-hover/badge:max-w-24 group-hover/badge:opacity-100">
+              <span className="max-w-0 overflow-hidden whitespace-nowrap text-base-content opacity-0 transition-all duration-300 group-hover:max-w-24 group-hover:opacity-100">
                 {t(`featuredPartners.badges.${badge}`)}
               </span>
             </span>
