@@ -1,6 +1,5 @@
-import { useState } from "react";
-
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { animate, motion, useMotionValue } from "framer-motion";
 
 import { HiOutlineFire, HiOutlineStar, HiOutlineTicket } from "react-icons/hi2";
 
@@ -105,7 +104,29 @@ export default function FeaturedPartners() {
   const [isPaused, setIsPaused] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
 
-  const shouldPause = isPaused || isDragging;
+  const x = useMotionValue(0);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!trackRef.current) {
+      return;
+    }
+
+    const track = trackRef.current;
+
+    const halfWidth = track.scrollWidth / 2;
+
+    const controls = animate(x, -halfWidth, {
+      duration: 32,
+      ease: "linear",
+      repeat: Infinity,
+      repeatType: "loop",
+    });
+
+    return () => {
+      controls.stop();
+    };
+  }, [x]);
 
   return (
     <section className="relative block overflow-hidden border-y border-base-300/60 bg-base-200/75 backdrop-blur-[2px] lg:py-8">
@@ -126,7 +147,9 @@ export default function FeaturedPartners() {
         <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-32 bg-gradient-to-l from-base-200/90 via-base-200/40 to-transparent" />
 
         <motion.div
+          ref={trackRef}
           className="flex w-max cursor-grab gap-5 py-3 active:cursor-grabbing"
+          style={{ x }}
           drag="x"
           dragConstraints={{
             left: -10000,
@@ -138,18 +161,6 @@ export default function FeaturedPartners() {
           }}
           onDragEnd={() => {
             setIsDragging(false);
-          }}
-          animate={
-            shouldPause
-              ? undefined
-              : {
-                  x: ["0%", "-50%"],
-                }
-          }
-          transition={{
-            duration: 32,
-            ease: "linear",
-            repeat: Infinity,
           }}
         >
           {marquee.map((partner, index) => (
@@ -221,7 +232,7 @@ function PartnerCard({
           return (
             <span
               key={badge}
-              className={`flex w-fit items-center gap-1 overflow-hidden rounded-2xl px-2 py-1 text-[9px] font-semibold uppercase tracking-wide backdrop-blur-sm shadow-sm transition-all duration-300 ${color} ${bg}`}
+              className={`flex w-fit items-center gap-1 overflow-hidden rounded-2xl px-2 py-1 text-[9px] font-semibold uppercase tracking-wide shadow-sm backdrop-blur-sm transition-all duration-300 ${color} ${bg}`}
             >
               <BadgeIcon className="h-5 w-5 shrink-0" />
 
