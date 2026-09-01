@@ -1,10 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+
+import { useCallback, useEffect, useRef, useState } from "react";
+
 import { animate, motion, useMotionValue } from "framer-motion";
 
-import { HiOutlineFire, HiOutlineStar, HiOutlineTicket } from "react-icons/hi2";
+import {
+  HiOutlineFire,
+  HiOutlineStar,
+  HiOutlineTicket,
+} from "react-icons/hi2";
 
 import { Link } from "react-router-dom";
-
 import { useTranslation } from "react-i18next";
 
 import ZaraLogo from "../../assets/ZaraLogo.png";
@@ -84,13 +89,11 @@ const badgeStyles: Record<
     color: "text-[#F8B615]",
     bg: "bg-[#F8B615]/30",
   },
-
   offers: {
     icon: HiOutlineFire,
     color: "text-[#EB2129]",
     bg: "bg-[#EB2129]/30",
   },
-
   events: {
     icon: HiOutlineTicket,
     color: "text-[#105BA9]",
@@ -98,35 +101,114 @@ const badgeStyles: Record<
   },
 };
 
+const MARQUEE_DURATION = 32;
+
 export default function FeaturedPartners() {
   const { t } = useTranslation();
-
-  const [isPaused, setIsPaused] = useState(false);
-  const [isDragging, setIsDragging] = useState(false);
 
   const x = useMotionValue(0);
   const trackRef = useRef<HTMLDivElement>(null);
 
+  const animationRef = useRef<ReturnType<typeof animate> | null>(null);
+  const halfWidthRef = useRef(0);
+
+  const [isDragging, setIsDragging] = useState(false);
+
+  /*
+   * Starts the marquee from its CURRENT position.
+   *
+   * We intentionally animate to -halfWidth first.
+   * Once we reach the end, we reset x to 0 and start
+   * another full cycle.
+   *
+   * This avoids the problem with:
+   *
+   * animate(x, -halfWidth, { repeat: Infinity })
+   *
+   * because that would repeat from whatever position
+   * the animation was originally started at.
+   */
+  const startMarquee = useCallback(() => {
+    const halfWidth = halfWidthRef.current;
+
+    if (!halfWidth) {
+      return;
+    }
+
+    animationRef.current?.stop();
+
+    let currentX = x.get();
+
+    /*
+     * Keep the position inside the duplicated marquee range.
+     *
+     * This is especially important after a mobile drag,
+     * because the user can drag the track far away from
+     * its normal animation position.
+     */
+    while (currentX < -halfWidth) {
+      currentX += halfWidth;
+    }
+
+    while (currentX > 0) {
+      currentX -= halfWidth;
+    }
+
+    x.set(currentX);
+
+    const remainingDistance = Math.abs(-halfWidth - currentX);
+    const remainingDuration =
+      (remainingDistance / halfWidth) * MARQUEE_DURATION;
+
+    /*
+     * First finish the current cycle.
+     */
+    animationRef.current = animate(x, -halfWidth, {
+      duration: Math.max(remainingDuration, 0.1),
+      ease: "linear",
+      onComplete: () => {
+        /*
+         * We have reached the end of the first copy.
+         * Because the content is duplicated, resetting to
+         * 0 is visually seamless.
+         */
+        x.set(0);
+
+        /*
+         * Continue with the normal full-speed cycle.
+         */
+        animationRef.current = animate(x, -halfWidth, {
+          duration: MARQUEE_DURATION,
+          ease: "linear",
+          repeat: Infinity,
+          repeatType: "loop",
+        });
+      },
+    });
+  }, [x]);
+
+  const pauseMarquee = useCallback(() => {
+    animationRef.current?.stop();
+    animationRef.current = null;
+  }, []);
+
+  /*
+   * Start the marquee once the track has been measured.
+   */
   useEffect(() => {
     if (!trackRef.current) {
       return;
     }
 
-    const track = trackRef.current;
+    halfWidthRef.current = trackRef.current.scrollWidth / 2;
 
-    const halfWidth = track.scrollWidth / 2;
-
-    const controls = animate(x, -halfWidth, {
-      duration: 32,
-      ease: "linear",
-      repeat: Infinity,
-      repeatType: "loop",
-    });
+    startMarquee();
 
     return () => {
-      controls.stop();
+      animationRef.current?.stop();
+      animationRef.current = null;
     };
-  }, [x]);
+  }, [startMarquee]);
 
   return (
     <section className="relative block overflow-hidden border-y border-base-300/60 bg-base-200/75 backdrop-blur-[2px] lg:py-8">
@@ -158,21 +240,40 @@ export default function FeaturedPartners() {
           dragElastic={0.05}
           onDragStart={() => {
             setIsDragging(true);
+            pauseMarquee();
           }}
           onDragEnd={() => {
             setIsDragging(false);
+
+            /*
+             * Restart from wherever the user released the drag.
+             */
+            startMarquee();
+          }}
+          onPointerDown={() => {
+            pauseMarquee();
+          }}
+          onPointerUp={() => {
+            /*
+             * Only restart here when we're NOT dragging.
+             *
+             * During an actual drag, onDragEnd handles this.
+             */
+            if (!isDragging) {
+              startMarquee();
+            }
+          }}
+          onPointerCancel={() => {
+            setIsDragging(false);
+            startMarquee();
           }}
         >
           {marquee.map((partner, index) => (
             <PartnerCard
               key={`${partner.name}-${index}`}
               partner={partner}
-              onInteractionStart={() => {
-                setIsPaused(true);
-              }}
-              onInteractionEnd={() => {
-                setIsPaused(false);
-              }}
+              onInteractionStart={pauseMarquee}
+              onInteractionEnd={startMarquee}
             />
           ))}
         </motion.div>
