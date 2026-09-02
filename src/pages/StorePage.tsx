@@ -360,7 +360,7 @@ function RelatedStores({ store }: { store: Store }) {
         {related.map((relatedStore) => (
           <Link
             key={relatedStore.slug}
-            to={`/stores/${relatedStore.slug}`}
+            to={`/shops/${relatedStore.slug}`}
             className="group rounded-2xl border border-base-300 bg-base-100 p-4 transition hover:-translate-y-0.5 hover:shadow-md"
           >
             <div className="flex items-center gap-3">
@@ -377,7 +377,9 @@ function RelatedStores({ store }: { store: Store }) {
                   {relatedStore.category}
                 </p>
 
-                <h3 className="font-bold">{relatedStore.name}</h3>
+                <h3 className="font-bold">
+                  {relatedStore.name}
+                </h3>
 
                 <p className="mt-0.5 text-xs text-base-content/50">
                   {relatedStore.floor}
