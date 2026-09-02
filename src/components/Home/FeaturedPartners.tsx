@@ -6,7 +6,7 @@ import { animate, motion, useMotionValue } from "framer-motion";
 import {
   HiOutlineFire,
   HiOutlineStar,
-  HiOutlineTicket,
+  HiOutlineTag
 } from "react-icons/hi2";
 
 import { Link } from "react-router-dom";
@@ -90,14 +90,14 @@ const badgeStyles: Record<
     bg: "bg-[#F8B615]/30",
   },
   offers: {
-    icon: HiOutlineFire,
-    color: "text-[#EB2129]",
-    bg: "bg-[#EB2129]/30",
+    icon: HiOutlineTag,
+    color: "text-[#14a753]",
+    bg: "bg-[#14a753]/30",
   },
   events: {
-    icon: HiOutlineTicket,
-    color: "text-[#105BA9]",
-    bg: "bg-[#105BA9]/30",
+    icon:  HiOutlineFire,
+    color: "text-[#eb2129]",
+    bg: "bg-[#eb2129]/30",
   },
 };
 

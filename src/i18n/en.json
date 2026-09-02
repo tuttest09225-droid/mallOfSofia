@@ -164,7 +164,7 @@
     "description": "Refresh your wardrobe with the newest collections, exclusive promotions and seasonal arrivals from your favourite brands.",
     "image": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=2000&q=85",
     "imageAlt": "Summer fashion campaign",
-    "href": "/events",
+    "href": "/campaigns/summer",
     "cta": "Explore the campaign",
     "stores": "80+ participating stores",
     "theme": "#EB2129",

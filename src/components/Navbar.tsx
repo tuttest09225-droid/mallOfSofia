@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 
 import { useScrollDirection } from "../hooks/useScrollDirection";
 import logo from "../assets/mall-of-sofia-logo-full.png";
+import MallOfSofiaLogo from "./MallOfSofiaLogo";
 
 const navItems = [
   { key: "shop", href: "/shops" },
@@ -77,11 +78,7 @@ export default function Navbar() {
           className="flex shrink-0 items-center"
           aria-label="Mall of Sofia home"
         >
-          <img
-            src={logo}
-            alt="Mall of Sofia"
-            className="h-16 w-auto object-contain"
-          />
+          <MallOfSofiaLogo className="w-[280px]" />
         </Link>
 
         {/* Desktop Navigation */}
