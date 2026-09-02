@@ -13,7 +13,7 @@ import {
   HiOutlineStar,
   HiOutlineTag,
 } from "react-icons/hi2";
-
+import { stores } from "../data/stores";
 import type { CampaignType, Store } from "../data/stores";
 
 type StorePageProps = {
@@ -131,7 +131,7 @@ function StoreHero({ store }: { store: Store }) {
   return (
     <section>
       <Link
-        to="/summer"
+        to="/campaigns/summer"
         className="mb-6 inline-flex items-center gap-2 text-sm font-semibold text-base-content/60 transition hover:text-base-content"
       >
         <HiOutlineArrowLeft />
@@ -337,7 +337,7 @@ function RelatedStores({ store }: { store: Store }) {
   }
 
   const related = store.relatedStores
-    .map((slug) => store[slug])
+    .map((slug) => stores[slug])
     .filter(Boolean);
 
   if (!related.length) {
