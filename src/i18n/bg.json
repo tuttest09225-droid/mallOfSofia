@@ -164,7 +164,7 @@
     "description": "Освежете гардероба си с най-новите колекции, ексклузивни промоции и сезонни предложения от любимите ви марки.",
     "image": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=2000&q=85",
     "imageAlt": "Лятна модна кампания",
-    "href": "/events",
+    "href": "/campaigns/summer",
     "cta": "Разгледайте кампанията",
     "stores": "80+ участващи магазина",
     "theme": "#EB2129",
