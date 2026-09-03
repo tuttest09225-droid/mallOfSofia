@@ -9,17 +9,18 @@
   align-items: center;
 }
 
-/*
- * This is the supplied PNG.
- * Don't apply transforms, filters or other modifications
- * to the icon itself.
- */
+
+/* Original icon */
+
 .mall-logo-icon {
   display: block;
   width: 72px;
   height: auto;
   flex-shrink: 0;
 }
+
+
+/* Wordmark */
 
 .mall-logo-wordmark {
   display: block;
@@ -28,14 +29,19 @@
   overflow: visible;
 }
 
-/* Typography */
+
+/* Text follows DaisyUI theme */
 
 .mall-logo-mall,
 .mall-logo-sofia,
 .mall-logo-heart,
 .mall-logo-of {
-  fill: #303030;
-  font-family: Arial, Helvetica, sans-serif;
+  fill: currentColor;
+  color: var(--color-base-content);
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
 }
 
 .mall-logo-mall {
@@ -60,6 +66,7 @@
   font-weight: 400;
 }
 
+
 /* ECG */
 
 .mall-logo-ecg {
@@ -68,35 +75,46 @@
   stroke-linejoin: round;
 }
 
-/* Permanent ECG */
+
+/* Static ECG */
 
 .mall-logo-ecg-base {
-  stroke: #000000;
-  stroke-width: 1.5;
+  stroke: var(--color-primary);
+  stroke-width: 4;
   opacity: 0.35;
 }
 
-/* Traveling heartbeat */
+
+/* Traveling pulse */
 
 .mall-logo-ecg-pulse {
-  stroke: #000000;
-  stroke-width: 2.2;
+  stroke: var(--color-primary);
+  stroke-width: 4;
 
-  /*
-   * The dash is the moving bright section.
-   *
-   * 8 = length of the bright pulse
-   * 92 = invisible gap
-   */
   stroke-dasharray: 8 92;
-
   stroke-dashoffset: 100;
 
-  filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.9))
-    drop-shadow(0 0 6px rgba(0, 0, 0, 0.5));
+  filter:
+    drop-shadow(
+      0 0 2px
+      color-mix(
+        in srgb,
+        var(--color-primary) 90%,
+        transparent
+      )
+    )
+    drop-shadow(
+      0 0 7px
+      color-mix(
+        in srgb,
+        var(--color-primary) 45%,
+        transparent
+      )
+    );
 
   animation: ecg-travel 2.4s linear infinite;
 }
+
 
 @keyframes ecg-travel {
   from {
@@ -108,55 +126,12 @@
   }
 }
 
+
 @media (prefers-reduced-motion: reduce) {
   .mall-logo-ecg-pulse {
     animation: none;
     stroke-dasharray: none;
     stroke-dashoffset: 0;
     opacity: 0.8;
-  }
-}
-
-@keyframes mall-heartbeat {
-  0%,
-  38%,
-  100% {
-    opacity: 0.75;
-    transform: scaleY(1);
-
-    filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.3))
-      drop-shadow(0 0 2px rgba(0, 0, 0, 0.15));
-  }
-
-  44% {
-    opacity: 1;
-    transform: scaleY(1.08);
-
-    filter: drop-shadow(0 0 3px rgba(0, 0, 0, 0.8))
-      drop-shadow(0 0 7px rgba(0, 0, 0, 0.4));
-  }
-
-  50% {
-    opacity: 1;
-    transform: scaleY(1.22);
-
-    filter: drop-shadow(0 0 4px rgba(0, 0, 0, 1))
-      drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
-  }
-
-  56% {
-    opacity: 0.9;
-    transform: scaleY(1.05);
-  }
-
-  62% {
-    opacity: 0.75;
-    transform: scaleY(1);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .mall-logo-ecg-spike {
-    animation: none;
   }
 }

@@ -4,34 +4,41 @@
   themes: mall-light --default, mall-dark;
 }
 
+
+/* =========================================================
+   MALL OF SOFIA — LIGHT
+   ========================================================= */
+
 @plugin "daisyui/theme" {
   name: "mall-light";
   default: true;
   color-scheme: light;
 
   --color-base-100: #ffffff;
-  --color-base-200: #f7f7f7;
-  --color-base-300: #e5e5e5;
-
-  --color-base-content: #111111;
+  --color-base-200: #f7f7f8;
+  --color-base-300: #e6e6e8;
+  --color-base-content: #171717;
 
   --color-primary: #eb2129;
   --color-primary-content: #ffffff;
 
-  --color-secondary: #eb2129;
+  --color-secondary: #105ba9;
   --color-secondary-content: #ffffff;
 
   --color-accent: #f8b615;
-  --color-accent-content: #111111;
+  --color-accent-content: #171717;
 
-  --color-success: #14a753;
-  --color-success-content: #ffffff;
+  --color-neutral: #242424;
+  --color-neutral-content: #ffffff;
 
   --color-info: #105ba9;
   --color-info-content: #ffffff;
 
+  --color-success: #14a753;
+  --color-success-content: #ffffff;
+
   --color-warning: #f8b615;
-  --color-warning-content: #111111;
+  --color-warning-content: #171717;
 
   --color-error: #eb2129;
   --color-error-content: #ffffff;
@@ -45,37 +52,53 @@
   --noise: 0;
 }
 
+
+/* =========================================================
+   MALL OF SOFIA — DARK
+   ========================================================= */
+
 @plugin "daisyui/theme" {
   name: "mall-dark";
   color-scheme: dark;
 
-  --color-base-100: #111111;
-  --color-base-200: #181818;
-  --color-base-300: #292929;
+  /* Background hierarchy */
+  --color-base-100: #101114;
+  --color-base-200: #17191d;
+  --color-base-300: #24272d;
 
-  --color-base-content: #f5f5f5;
+  /* Text */
+  --color-base-content: #f4f4f5;
 
-  --color-primary: #eb2129;
+  /* Brand red */
+  --color-primary: #f12b34;
   --color-primary-content: #ffffff;
 
-  --color-secondary: #3c82c4;
+  /* Mall blue */
+  --color-secondary: #3d8fd4;
   --color-secondary-content: #ffffff;
 
-  --color-accent: #f8b615;
-  --color-accent-content: #111111;
+  /* Mall yellow */
+  --color-accent: #ffc62b;
+  --color-accent-content: #171717;
 
-  --color-success: #14a753;
-  --color-success-content: #ffffff;
+  /* Neutral */
+  --color-neutral: #2b2e34;
+  --color-neutral-content: #f4f4f5;
 
-  --color-info: #3c82c4;
+  /* Semantic colors */
+  --color-info: #4b9be0;
   --color-info-content: #ffffff;
 
-  --color-warning: #f8b615;
-  --color-warning-content: #111111;
+  --color-success: #24bd6a;
+  --color-success-content: #ffffff;
 
-  --color-error: #eb2129;
+  --color-warning: #ffc62b;
+  --color-warning-content: #171717;
+
+  --color-error: #f0444c;
   --color-error-content: #ffffff;
 
+  /* Components */
   --radius-selector: 1rem;
   --radius-field: 0.75rem;
   --radius-box: 1.5rem;

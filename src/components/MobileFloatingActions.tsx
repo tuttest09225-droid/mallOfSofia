@@ -15,11 +15,7 @@ export default function MobileFloatingActions() {
   };
 
   return (
-    <div
-  className={`fixed bottom-6 right-4 z-50 flex flex-col overflow-hidden rounded-full bg-base-100/40 shadow-xl backdrop-blur-sm ${
-    showBackToTop ? "border border-primary" : ""
-  }`}
->
+    <div className="fixed bottom-6 right-4 z-50 flex flex-col overflow-hidden rounded-full border border-primary bg-base-100/40 shadow-xl backdrop-blur-sm">
       {/* Back To Top */}
       {showBackToTop && (
         <>
